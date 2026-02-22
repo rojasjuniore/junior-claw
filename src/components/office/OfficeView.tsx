@@ -13,6 +13,7 @@ interface StatusData {
   sessions: { total: number; active: number };
   costs: { today: number };
   crons: { total: number; active: number };
+  decisions: { pending: number };
   system: {
     cpu: { usage: number; cores: number };
     memory: { percentage: number; used: number; total: number };
@@ -140,7 +141,9 @@ export function OfficeView() {
               <AlertTriangle className="h-6 w-6 text-yellow-500" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">3</p>
+              <p className="text-2xl font-bold text-white">
+                {loading ? '...' : status?.decisions?.pending || 0}
+              </p>
               <p className="text-xs text-zinc-500">Decisions</p>
             </div>
           </CardContent>
